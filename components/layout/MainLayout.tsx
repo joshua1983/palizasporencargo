@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import React from 'react'
+import { FC } from 'react'
+import { ChildrenProps } from '../interfaces/Base'
 import { Navbar } from '../Navbar'
 import styles from './MainLayout.module.css'
 
-const MainLayout = ({children}) => {
+const MainLayout:FC<ChildrenProps> = ({children}) => {
 
     return (
         <div className={styles.container}>
