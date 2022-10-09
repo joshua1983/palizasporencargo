@@ -7,7 +7,7 @@ import { PalizaListResponse, Paliza } from "../components/interfaces";
 import { PalizaCard } from "../components/paliza";
 
 interface Props {
-  peoples: Paliza[];
+  peoples: Paliza[]; 
 }
 
 const HomePage: NextPage<Props> = ({ peoples }) => {
@@ -29,16 +29,15 @@ const HomePage: NextPage<Props> = ({ peoples }) => {
 
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const {data} = await peopleApi.get<PalizaListResponse>("/data.js");
-  const people: Paliza[] = data.usuarios?.map((people, index) => ({
+  const {data} = await peopleApi.get<PalizaListResponse>("/data.json");
+  const peoples: Paliza[] = data.usuarios?.map((people, index) => ({
     ...people,
     id: people.id,
     img: `https://raw.githubusercontent.com/joshua1983/palizasporencargo/main/public/people/${people.imgName}`,
   }));
-console.log(people)
   return {
     props: {
-      people,
+      peoples,
     },
   };
 };
