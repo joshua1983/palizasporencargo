@@ -1,6 +1,6 @@
 import React from "react";
-import { DarkLayout } from "../components/layout/DarkLayout";
-import MainLayout from "../components/layout/MainLayout";
+import { DarkLayout } from "../components/layouts/DarkLayout";
+import MainLayout from "../components/layouts/MainLayout";
 
 export default function PalizaPage() {
   return (

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React, { CSSProperties } from 'react'
 import { FC } from 'react'
-import { LinkProps } from './interfaces/Base'
+import { LinkProps } from '../interfaces/Base'
 
 const style: CSSProperties = {
     color: '#0070f3',
