@@ -9,7 +9,6 @@ interface Props {
 }
 
 const PalizaPage: NextPage<Props> = ({ paliza }) => {
-  console.log(paliza)
   return (
     <MainLayout title="Toma tu paliza">
           <h1>{paliza.nombre}</h1>
@@ -54,7 +53,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const { id } = ctx.params as { id: string };
 
   const { data } = await peopleApi.get<PalizaListResponse>('/data.json');
-
   const peoples: Paliza[] = data.usuarios?.map((people, index) => ({
     ...people,
     id: people.id,
@@ -62,7 +60,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   }));
 
   const people = peoples.filter(p => p.id.toString() === id);
-  console.log(people) 
 
   return {
     props: {

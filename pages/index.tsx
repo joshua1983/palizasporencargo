@@ -11,7 +11,6 @@ interface Props {
 }
 
 const HomePage: NextPage<Props> = ({ peoples }) => {
-  console.log(peoples)
   return (
     <MainLayout title="palizas por encargo">
       <h1 className={"title"}>Palizas por encargo</h1>
@@ -29,7 +28,7 @@ const HomePage: NextPage<Props> = ({ peoples }) => {
 
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const {data} = await peopleApi.get<PalizaListResponse>("/data.json");
+  const { data } = await peopleApi.get<PalizaListResponse>("/data.json");
   const peoples: Paliza[] = data.usuarios?.map((people, index) => ({
     ...people,
     id: people.id,
