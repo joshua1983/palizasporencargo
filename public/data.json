@@ -7,5 +7,77 @@
 		"id": 2,
 		"nombre": "Josue Barrios",
 		"imgName": "josue.png"
+	},{
+		"id": 3,
+		"nombre": "Julieta Garcia",
+		"imgName": "julieta.png"
+	},{
+		"id": 4,
+		"nombre": "Ventura Marti",
+		"imgName": "ventura.png"
+	},{
+		"id": 5,
+		"nombre": "Aina Orcau",
+		"imgName": "aina.png"
+	},{
+		"id": 6,
+		"nombre": "Rosa Ye Wang",
+		"imgName": "rosa.png"
+	},{
+		"id": 7,
+		"nombre": "Nicolas Balduzzi",
+		"imgName": "nicolas.png"
+	},{
+		"id": 8,
+		"nombre": "Eli Gomez",
+		"imgName": "eli.png"
+	},{
+		"id": 9,
+		"nombre": "Diego Correa",
+		"imgName": "diego.png"
+	},{
+		"id": 10,
+		"nombre": "Sole Moreno",
+		"imgName": "sole.png"
+	},{
+		"id": 11,
+		"nombre": "Giuseppe Giovinazzo",
+		"imgName": "giuseppe.png"
+	},{
+		"id": 12,
+		"nombre": "Dea Hernandez",
+		"imgName": "dea.png"
+	},{
+		"id": 13,
+		"nombre": "Silvia Osorio",
+		"imgName": "silvia.png"
+	},{
+		"id": 14,
+		"nombre": "Liza Milhhedko",
+		"imgName": "liza.png"
+	},{
+		"id": 15,
+		"nombre": "Carlota Terme",
+		"imgName": "carlota.png"
+	},{
+		"id": 16,
+		"nombre": "Cristina Jimenez",
+		"imgName": "cristina.png"
+	},{
+		"id": 17,
+		"nombre": "Daniil Mihhedko",
+		"imgName": "daniil.png"
+	},{
+		"id": 18,
+		"nombre": "Carlota Oriol",
+		"imgName": "oriol.png"
+	},{
+		"id": 19,
+		"nombre": "Toni Montero",
+		"imgName": "toni.png"
+	},{
+		"id": 20,
+		"nombre": "Samir El Aoufi",
+		"imgName": "samir.png"
 	}]
 }
