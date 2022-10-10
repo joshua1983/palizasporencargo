@@ -21,7 +21,6 @@ const PalizaPage: NextPage<Props> = ({ paliza }) => {
           <Card isHoverable css={{ padding: "30px" }}>
             <Card.Body>
               <Card.Image src={"https://i.gifer.com/177l.gif"} alt={paliza.nombre} width="100%" height={140} />
-              <Text>Envia tu paliza con el siguiente link: {window.location.href}</Text>
             </Card.Body>
           </Card>
         </Grid>
