@@ -27,7 +27,7 @@ const PalizaPage: NextPage<Props> = ({ paliza }) => {
                           {/* <Text h1 transform="capitalize">{paliza.nombre}</Text> */}
                       </Card.Header>
                       <Card.Body>
-                          <Text size={30}>Paliza recibida</Text>
+                          <Text size={30}>Haz recibido una paliza</Text>
                          
                       </Card.Body>
                   </Card>
