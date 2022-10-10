@@ -39,7 +39,7 @@ const PalizaPage: NextPage<Props> = ({ paliza }) => {
 
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const listaPeople = [...Array(15)].map((value, index) => `${index + 1}`);
+  const listaPeople = [...Array(20)].map((value, index) => `${index + 1}`);
 
   return {
     paths: listaPeople.map((id) => ({
