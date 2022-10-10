@@ -1,5 +1,5 @@
+import { Text } from "@nextui-org/react";
 import Image from "next/image";
-import React from "react";
 import logoNextJs from "../../public/next.png";
 
 function Footer() {
@@ -9,6 +9,7 @@ function Footer() {
         width={103}
         height={62}
       ></Image>
+      <Text>Codigo fuente: <a href="https://github.com/joshua1983/palizasporencargo">GitHub</a></Text>
     </div>
   );
 }
