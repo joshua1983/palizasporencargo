@@ -15,7 +15,9 @@ interface Props {
 const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
   const [numeroPalizas, setNumero] = useState();
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/paliza?id=${paliza.id}`).then((res) => setNumero(res.data.data));
+    axios
+      .get(`https://palizasporencargo.vercel.app/api/paliza?id=${paliza.id}`)
+      .then((res) => setNumero(res.data.data));
   });
   return (
     <MainLayout title="Toma tu paliza">
