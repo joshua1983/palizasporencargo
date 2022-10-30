@@ -15,6 +15,15 @@ type PalizaRequest = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ApiData>) {
   try {
+    if (req.method === "GET") {
+      let { id } = req.query;
+      let { db } = await connectToDatabase(BD_NAME_PALIZAS);
+      let conteo = await db.collection("encargos").find({ destination: id }).toArray();
+      return res.status(200).json({
+        data: conteo.length,
+        success: true,
+      });
+    }
     if (req.method === "POST") {
       const data = req.body;
       let { db } = await connectToDatabase(BD_NAME_PALIZAS);
