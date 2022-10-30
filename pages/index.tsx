@@ -27,7 +27,7 @@ const HomePage: NextPage<Props> = ({ peoples }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const res = await peopleApi("/paliza");
+  const res = await peopleApi();
   let peoples: any = new Array<Paliza>();
   if (res.success) {
     peoples = res.data?.map((data: any) => ({

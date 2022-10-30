@@ -45,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { id } = ctx.params as { id: string };
 
-  const res = await peopleApi("/paliza");
+  const res = await peopleApi();
   let peoples: any[] = new Array<Paliza>();
   let people: any = new Array<Paliza>();
   let resp: any;

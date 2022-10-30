@@ -1,12 +1,39 @@
 import axios from "axios";
+import { ObjectId } from "mongodb";
 import { Paliza } from "../components/interfaces";
+import { connectToDatabase, BD_NAME_PALIZAS } from "../lib/mongodb";
 
-export const peopleApi = (endpoint: string) => {
-  const SERVER_URL = process.env.NEXT_PUBLIC_VERCEL_URL as string;
-  return fetch(`${SERVER_URL}/api${endpoint}`).then((res: any) => res.json());
+type ApiData = {
+  data: any;
+  success: boolean;
+};
+
+type PalizaRequest = {
+  _id: ObjectId;
+  destination: number;
+  date: Date;
+};
+
+export const peopleApi = async () => {
+  let { db } = await connectToDatabase(BD_NAME_PALIZAS);
+  let users = await db.collection("victimas").find({}).toArray();
+  return {
+    data: users,
+    success: true,
+  };
 };
 
 export const savePaliza = async (data: Paliza) => {
-  const SERVER_URL = process.env.NEXT_PUBLIC_VERCEL_URL as string;
-  return await axios.post(`${SERVER_URL}/api/paliza`, data).then((res: any) => res.data);
+  let { db } = await connectToDatabase(BD_NAME_PALIZAS);
+  let requestPaliza: PalizaRequest = {
+    _id: new ObjectId(),
+    destination: data.id,
+    date: new Date(),
+  };
+  await db.collection("encargos").insertOne(requestPaliza);
+  let conteo = await db.collection("encargos").find({ destination: data.id }).toArray();
+  return {
+    data: conteo.length,
+    success: true,
+  };
 };
