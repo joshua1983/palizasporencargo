@@ -1,8 +1,12 @@
 import axios from "axios";
+import { Paliza } from "../components/interfaces";
 
-const peopleApi = axios.create({
-    baseURL: 'https://raw.githubusercontent.com/joshua1983/palizasporencargo/main/public'
-})
+export const peopleApi = (endpoint: string) => {
+  const SERVER_URL = process.env.SERVER_URL as string;
+  return fetch(`${SERVER_URL}/api${endpoint}`).then((res: any) => res.json());
+};
 
-
-export default peopleApi;
+export const savePaliza = async (data: Paliza) => {
+  const SERVER_URL = process.env.SERVER_URL as string;
+  return await axios.post(`${SERVER_URL}/api/paliza`, data).then((res: any) => res.data);
+};

@@ -3,6 +3,7 @@ export interface PalizaListResponse {
 }
 
 export interface Paliza {
+    _id: any;
     nombre: string;
     imgName: string;
     id: number;

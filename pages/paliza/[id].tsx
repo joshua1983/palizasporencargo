@@ -1,21 +1,18 @@
-import { Card, Grid, Text, useAsyncList } from "@nextui-org/react";
+import { Card, Grid, Text } from "@nextui-org/react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
-import { peopleApi } from "../../api";
-import { Paliza, PalizaListResponse } from "../../components/interfaces";
+import { Paliza } from "../../components/interfaces";
 import MainLayout from "../../components/layouts/MainLayout";
-import { GiphyFetch, GifsResult } from '@giphy/js-fetch-api'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import gifSearch from "../../api/gifApi";
+import { savePaliza, peopleApi } from "../../api/peopleApi";
 
 interface Props {
   paliza: Paliza;
-  gif:any
+  gif: any;
+  numeroPalizas: number;
 }
 
-const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
-
-
+const PalizaPage: NextPage<Props> = ({ paliza, gif, numeroPalizas }) => {
   return (
     <MainLayout title="Toma tu paliza">
       <h1>{paliza.nombre}</h1>
@@ -25,6 +22,7 @@ const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
           <Card isHoverable css={{ padding: "30px" }}>
             <Card.Body>
               <Card.Image src={gif} alt={paliza.nombre} width="100%" height={140} />
+              <Text>Número de palizas recibidas: {numeroPalizas}</Text>
             </Card.Body>
           </Card>
         </Grid>
@@ -32,8 +30,6 @@ const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
     </MainLayout>
   );
 };
-
-
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const listaPeople = [...Array(20)].map((value, index) => `${index + 1}`);
@@ -49,22 +45,31 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { id } = ctx.params as { id: string };
 
-  const { data } = await peopleApi.get<PalizaListResponse>("/data.json");
-  const peoples: Paliza[] = data.usuarios?.map((people, index) => ({
-    ...people,
-    id: people.id,
-    img: `https://raw.githubusercontent.com/joshua1983/palizasporencargo/main/public/people/${people.imgName}`
-  }));
-  
-  const people = peoples.filter((p) => p.id.toString() === id);
-  const resp = await gifSearch("fight");
-  const indice = Math.floor(Math.random() * 10);
-  
+  const res = await peopleApi("/paliza");
+  let peoples: any[] = new Array<Paliza>();
+  let people: any = new Array<Paliza>();
+  let resp: any;
+  let indice: number = 0;
+  let numeroPalizas: number = 0;
+  if (res.success) {
+    peoples = res.data?.map((data: any) => ({
+      nombre: data.nombre,
+      id: data.id,
+      img: `https://raw.githubusercontent.com/joshua1983/palizasporencargo/main/public/people/${data.imgName}`,
+    }));
+    people = peoples.filter((p: any) => p.id.toString() === id);
+    resp = await gifSearch("fight");
+    indice = Math.floor(Math.random() * 10);
+
+    let dataResponse = await savePaliza(people[0]);
+    numeroPalizas = dataResponse.data;
+  }
 
   return {
     props: {
       paliza: people[0],
-      gif: `https://media.giphy.com/media/${resp.data[indice].id}/giphy.gif` 
+      gif: `https://media.giphy.com/media/${resp.data[indice].id}/giphy.gif`,
+      numeroPalizas: numeroPalizas,
     },
   };
 };

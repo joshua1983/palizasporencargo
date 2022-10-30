@@ -5,11 +5,7 @@ import logoNextJs from "../../public/next.png";
 function Footer() {
   return (
     <div>
-      <Image src={logoNextJs} alt="NextJS"
-        width={103}
-        height={62}
-      ></Image>
-      <Text>Codigo fuente: <a href="https://github.com/joshua1983/palizasporencargo">GitHub</a></Text>
+      <code>Version 1.0</code>
     </div>
   );
 }
