@@ -4,7 +4,7 @@ import { Paliza } from "../../components/interfaces";
 import MainLayout from "../../components/layouts/MainLayout";
 import { useEffect, useState } from "react";
 import gifSearch from "../../api/gifApi";
-import { peopleApi } from "../../api/peopleApi";
+import { peopleApi, savePaliza } from "../../api/peopleApi";
 import axios from "axios";
 
 interface Props {
@@ -56,7 +56,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   let people: any = new Array<Paliza>();
   let resp: any;
   let indice: number = 0;
-  let numeroPalizas: number = 0;
   if (res.success) {
     peoples = res.data?.map((data: any) => ({
       nombre: data.nombre,
@@ -66,6 +65,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     people = peoples.filter((p: any) => p.id.toString() === id);
     resp = await gifSearch("fight");
     indice = Math.floor(Math.random() * 10);
+    savePaliza(people[0]);
   }
 
   return {
