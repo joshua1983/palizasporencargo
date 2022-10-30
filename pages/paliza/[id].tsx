@@ -5,6 +5,7 @@ import MainLayout from "../../components/layouts/MainLayout";
 import { useEffect } from "react";
 import gifSearch from "../../api/gifApi";
 import { savePaliza, peopleApi } from "../../api/peopleApi";
+import axios from "axios";
 
 interface Props {
   paliza: Paliza;
@@ -13,6 +14,9 @@ interface Props {
 }
 
 const PalizaPage: NextPage<Props> = ({ paliza, gif, numeroPalizas }) => {
+  useEffect(() => {
+    axios.post("https://palizasporencargo.vercel.app/api/paliza", paliza).then((res) => console.log(res));
+  });
   return (
     <MainLayout title="Toma tu paliza">
       <h1>{paliza.nombre}</h1>
