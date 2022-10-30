@@ -1,11 +1,13 @@
-import { Text } from "@nextui-org/react";
+import { Grid, Text } from "@nextui-org/react";
 import Image from "next/image";
 import logoNextJs from "../../public/next.png";
 
 function Footer() {
   return (
     <div>
-      <code>Version 1.0</code>
+      <Grid.Container css={{ marginBottom: "5%" }} justify="center">
+        <code>Version 1.0</code>
+      </Grid.Container>
     </div>
   );
 }
