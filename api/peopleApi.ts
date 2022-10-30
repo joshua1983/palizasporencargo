@@ -23,15 +23,15 @@ export const peopleApi = async () => {
   };
 };
 
-export const savePaliza = async (data: Paliza) => {
+export const savePaliza = async (id: number) => {
   let { db } = await connectToDatabase(BD_NAME_PALIZAS);
   let requestPaliza: PalizaRequest = {
     _id: new ObjectId(),
-    destination: data.id,
+    destination: id,
     date: new Date(),
   };
   await db.collection("encargos").insertOne(requestPaliza);
-  let conteo = await db.collection("encargos").find({ destination: data.id }).toArray();
+  let conteo = await db.collection("encargos").find({ destination: id }).toArray();
   return {
     data: conteo.length,
     success: true,

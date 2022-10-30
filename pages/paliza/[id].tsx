@@ -37,6 +37,11 @@ const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
   );
 };
 
+export async function getServerSideProps(ctx: any) {
+  const { id } = ctx.params as { id: string };
+  savePaliza(parseInt(id));
+}
+
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const listaPeople = [...Array(20)].map((value, index) => `${index + 1}`);
 
@@ -65,7 +70,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     people = peoples.filter((p: any) => p.id.toString() === id);
     resp = await gifSearch("fight");
     indice = Math.floor(Math.random() * 10);
-    savePaliza(people[0]);
   }
 
   return {
