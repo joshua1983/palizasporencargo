@@ -40,21 +40,6 @@ const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
 export async function getServerSideProps(ctx: any) {
   const { id } = ctx.params as { id: string };
   savePaliza(parseInt(id));
-}
-
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const listaPeople = [...Array(20)].map((value, index) => `${index + 1}`);
-
-  return {
-    paths: listaPeople.map((id) => ({
-      params: { id },
-    })),
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { id } = ctx.params as { id: string };
 
   const res = await peopleApi();
   let peoples: any[] = new Array<Paliza>();
@@ -78,6 +63,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       gif: `https://media.giphy.com/media/${resp.data[indice].id}/giphy.gif`,
     },
   };
-};
+}
+
 
 export default PalizaPage;
