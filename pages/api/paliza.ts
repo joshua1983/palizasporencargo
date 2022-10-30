@@ -18,7 +18,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (req.method === "GET") {
       let { id } = req.query;
       let { db } = await connectToDatabase(BD_NAME_PALIZAS);
-      let conteo = await db.collection("encargos").find({ destination: id }).toArray();
+      let conteo = await db
+        .collection("encargos")
+        .find({ destination: parseInt(id as string) })
+        .toArray();
       return res.status(200).json({
         data: conteo.length,
         success: true,

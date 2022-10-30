@@ -4,7 +4,7 @@ import { Paliza } from "../../components/interfaces";
 import MainLayout from "../../components/layouts/MainLayout";
 import { useEffect, useState } from "react";
 import gifSearch from "../../api/gifApi";
-import { savePaliza, peopleApi } from "../../api/peopleApi";
+import { peopleApi } from "../../api/peopleApi";
 import axios from "axios";
 
 interface Props {
@@ -15,16 +15,14 @@ interface Props {
 const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
   const [numeroPalizas, setNumero] = useState();
   useEffect(() => {
-    axios
-      .get(`https://palizasporencargo.vercel.app/api/paliza?id=${paliza.id}`)
-      .then((res) => setNumero(res.data.data));
+    axios.get(`http://localhost:3000/api/paliza?id=${paliza.id}`).then((res) => setNumero(res.data.data));
   });
   return (
     <MainLayout title="Toma tu paliza">
       <h1>{paliza.nombre}</h1>
       <h3>Haz recibido una paliza</h3>
       <Grid.Container css={{ marginTop: "5px" }} justify="center">
-        <Grid xs={3}>
+        <Grid xs={4}>
           <Card isHoverable css={{ padding: "30px" }}>
             <Card.Body>
               <Card.Image src={gif} alt={paliza.nombre} width="100%" height={140} />
