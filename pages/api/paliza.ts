@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Paliza } from "../../components/interfaces";
 import { connectToDatabase, BD_NAME_PALIZAS } from "../../lib/mongodb";
 
 type ApiData = {
