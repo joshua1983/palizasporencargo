@@ -2,7 +2,7 @@ import { Card, Grid, Text } from "@nextui-org/react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Paliza } from "../../components/interfaces";
 import MainLayout from "../../components/layouts/MainLayout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gifSearch from "../../api/gifApi";
 import { savePaliza, peopleApi } from "../../api/peopleApi";
 import axios from "axios";
@@ -10,12 +10,12 @@ import axios from "axios";
 interface Props {
   paliza: Paliza;
   gif: any;
-  numeroPalizas: number;
 }
 
-const PalizaPage: NextPage<Props> = ({ paliza, gif, numeroPalizas }) => {
+const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
+  const [numeroPalizas, setNumero] = useState();
   useEffect(() => {
-    axios.post("https://palizasporencargo.vercel.app/api/paliza", paliza).then((res) => console.log(res));
+    axios.post("https://palizasporencargo.vercel.app/api/paliza", paliza).then((res) => setNumero(res.data.data));
   });
   return (
     <MainLayout title="Toma tu paliza">
@@ -64,16 +64,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     people = peoples.filter((p: any) => p.id.toString() === id);
     resp = await gifSearch("fight");
     indice = Math.floor(Math.random() * 10);
-
-    let dataResponse = await savePaliza(people[0]);
-    numeroPalizas = dataResponse.data;
   }
 
   return {
     props: {
       paliza: people[0],
       gif: `https://media.giphy.com/media/${resp.data[indice].id}/giphy.gif`,
-      numeroPalizas: numeroPalizas,
     },
   };
 };
