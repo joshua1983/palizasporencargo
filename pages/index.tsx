@@ -1,9 +1,8 @@
 import { Grid } from "@nextui-org/react";
-import React from "react";
-import MainLayout from "../components/layouts/MainLayout";
 import { GetStaticProps, NextPage } from "next";
 import { peopleApi } from "../api/peopleApi";
 import { Paliza } from "../components/interfaces";
+import MainLayout from "../components/layouts/MainLayout";
 import { PalizaCard } from "../components/paliza";
 
 interface Props {
@@ -14,9 +13,7 @@ const HomePage: NextPage<Props> = ({ peoples }) => {
   return (
     <MainLayout title="palizas por encargo">
       <h1 className={"title"}>Palizas por encargo</h1>
-
       <h3>Seleccione el destinatario de la paliza</h3>
-
       <Grid.Container gap={2} justify="flex-start">
         {peoples?.map((people) => (
           <PalizaCard poke={people} key={people.id} />

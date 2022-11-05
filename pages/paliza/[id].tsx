@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import gifSearch from "../../api/gifApi";
 import { peopleApi, savePaliza } from "../../api/peopleApi";
 import axios from "axios";
+import { SERVER } from "../../config/constants";
 
 interface Props {
   paliza: Paliza;
@@ -15,9 +16,7 @@ interface Props {
 const PalizaPage: NextPage<Props> = ({ paliza, gif }) => {
   const [numeroPalizas, setNumero] = useState();
   useEffect(() => {
-    axios
-      .get(`https://palizasporencargo.vercel.app/api/paliza?id=${paliza.id}`)
-      .then((res) => setNumero(res.data.data));
+    axios.get(`${SERVER}/api/paliza?id=${paliza.id}`).then((res) => setNumero(res.data.data));
   });
   return (
     <MainLayout title="Toma tu paliza">

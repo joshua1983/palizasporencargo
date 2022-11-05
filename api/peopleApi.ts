@@ -1,7 +1,5 @@
-import axios from "axios";
 import { ObjectId } from "mongodb";
-import { Paliza } from "../components/interfaces";
-import { connectToDatabase, BD_NAME_PALIZAS } from "../lib/mongodb";
+import { BD_NAME_PALIZAS, connectToDatabase } from "../lib/mongodb";
 
 type ApiData = {
   data: any;
