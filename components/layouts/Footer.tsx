@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div>
       <Grid.Container css={{ marginBottom: "5%" }} justify="center">
-        <code>Version 1.0</code>
+        <code>Version 1.1</code>
       </Grid.Container>
     </div>
   );
